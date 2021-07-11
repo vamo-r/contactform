@@ -1,0 +1,222 @@
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+}
+@mixin btnStyle {
+  background: #000;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #fff;
+  cursor: pointer;
+}
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  h1 {
+    text-align: center;
+  }
+  form {
+    width: 90%;
+    margin: 0 auto;
+    table {
+      width: 100%;
+      border-spacing: 0 2rem;
+      th {
+        width: 30%;
+        text-align: left;
+        vertical-align: top;
+        span {
+          margin: 0 0 0 1rem;
+          color: #f00;
+        }
+      }
+      .table__name {
+        display: flex;
+        input#fullname {
+          width: 70%;
+        }
+      }
+      td {
+        width: 70%;
+        color: #888;
+        input,textarea {
+          width: 100%;
+          height: 20px;
+          padding: 5px;
+          border: 1px solid #888;
+          border-radius: 5px;
+        }
+        input#gender {
+          width: 1rem;
+        }
+        input#postcode {
+          ime-mode: disabled;
+          width: 50%;
+          margin: 0 0 0 1rem;
+        }
+        .error {
+          color: #f00;
+        }
+        .opinion {
+          resize: none;
+          height: 6rem;
+        }
+      }
+      .table__gender {
+        color: #000;
+      }
+      .table__postcode span {
+        color: #000;
+      }
+    }
+  }
+  .btn {
+    @include flexCenter;
+    input {
+      @include btnStyle;
+      padding: 10px 50px;
+      border: 1px solid #888;
+    }
+  }
+  .fixbtn {
+    @include flexCenter;
+    input {
+      background: #fff;
+      border: none;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+  .confirm_table td {
+    color: #000;
+  }
+  .thanks {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    button {
+      @include btnStyle;
+      margin: 2rem 0;
+      padding: 10px 50px;
+      border: 1px solid #888;
+    }
+  }
+
+
+
+  .flash_delete {
+    padding: 1rem 0;
+    background: #ff8989;
+  }
+  .search {
+    padding: 1rem;
+    border: 1px solid;
+    .search__name {
+      display: inline-block;
+      margin: 0 1rem 0 0;
+      label {
+        font-weight: bold;
+      }
+      input {
+        height: 2rem;
+      }
+    }
+    .search__gender {
+      display: inline-block;
+      label {
+        font-weight: bold;
+      }
+    }
+    .search__regist {
+      margin: 1rem 0;
+      label {
+        font-weight: bold;
+      }
+      input {
+        height: 2rem;
+      }
+    }
+    .search__email {
+      label {
+        font-weight: bold;
+      }
+      input {
+        height: 2rem;
+      }
+    }
+  }
+  .page {
+    display: flex;
+    justify-content: space-between;
+    ul {
+      list-style: none;
+      display: flex;
+      padding: 0;
+      border: 1px solid #aaa;
+      li {
+        a {
+          text-decoration: none;
+          padding: 1px 8px;
+        }
+      }
+      .active {
+        background: #000;
+        color: #fff;
+      }
+      .disabled,.active {
+        padding: 1px 8px;
+      }
+      li +li {
+        border-left: 1px solid #aaa;
+      }
+    }
+  }
+  .opinion_list {
+    table {
+      border-collapse: collapse;
+      tr {
+        .id {
+          width: 5%;
+          padding: 2rem 1rem;
+          color: #000;
+        }
+        .fullname {
+          width: 15%;
+          padding: 2rem 1rem;
+          color: #000;
+        }
+        .gender {
+          width: 10%;
+          padding: 2rem 1rem;
+          color: #000;
+        }
+        .email {
+          width: 20%;
+          padding: 2rem 1rem;
+          color: #000;
+        }
+        .opinion {
+          width: 40%;
+          padding: 2rem 1rem;
+          color: #000;
+        }
+        .delete {
+          width: 10%;
+          padding: 2rem 1rem;
+          color: #000;
+          input {
+            @include btnStyle;
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+      .table_tr {
+        border-bottom: 1px solid;
+      }
+    }
+  }
+}
