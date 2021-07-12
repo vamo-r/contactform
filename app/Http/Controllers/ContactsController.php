@@ -37,7 +37,7 @@ class ContactsController extends Controller
     return view('thanks');
   }
 
-  public function manage()
+  public function manage(Request $request)
   {
     $items = Contact::paginate(10);
     Paginator::useBootstrap();
