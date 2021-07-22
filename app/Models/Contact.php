@@ -22,4 +22,10 @@ class Contact extends Model
     'opinion' => 'required|max:120'
   );
   public $timestamps = true;
+
+  public function saveContact($form_data)
+  {
+    unset($form_data['_token_']);
+    $this->fill($form_data)->save();
+  }
 }

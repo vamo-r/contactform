@@ -97,21 +97,25 @@
     width: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    button {
+    a {
       @include btnStyle;
-      margin: 2rem 0;
+      width: 50%;
+      margin: 2rem auto;
       padding: 10px 50px;
       border: 1px solid #888;
     }
   }
 
 
-
+  .notlogin {
+    display: inline;
+  }
   .flash_delete {
     padding: 1rem 0;
     background: #ff8989;
   }
   .search {
+    margin: 1rem 0 0;
     padding: 1rem;
     border: 1px solid;
     .search__name {
@@ -151,28 +155,8 @@
   .page {
     display: flex;
     justify-content: space-between;
-    ul {
-      list-style: none;
-      display: flex;
-      padding: 0;
-      border: 1px solid #aaa;
-      li {
-        a {
-          text-decoration: none;
-          padding: 1px 8px;
-        }
-      }
-      .active {
-        background: #000;
-        color: #fff;
-      }
-      .disabled,.active {
-        padding: 1px 8px;
-      }
-      li +li {
-        border-left: 1px solid #aaa;
-      }
-    }
+    align-items: center;
+    margin: 1rem 0;
   }
   .opinion_list {
     table {

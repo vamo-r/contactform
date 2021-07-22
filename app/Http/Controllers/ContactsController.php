@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
-use App\Models\Search;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 
@@ -14,38 +13,60 @@ class ContactsController extends Controller
     return view('index');
   }
 
-  public function fix(Request $request)
-  {
-    $data = $request->all();
-    return view('index', ['data' => $data]);
-  }
-
   public function confirm(Request $request)
   {
     $this->validate($request, Contact::$rules);
-    $data = $request->all();
-    return view('confirm', ['data' => $data]);
+    $form_data = $request->all();
+    return view('confirm', ['form_data' => $form_data]);
   }
 
-  public function complete(Request $request)
+  public function fix(Request $request)
+  {
+    $form_data = $request->all();
+    return view('index', ['form_data' => $form_data]);
+  }
+
+  public function complete(Request $request, Contact $contact)
   {
     $request->session()->regenerateToken();
-    $contact = new Contact();
-    $data = $request->all();
-    unset($data['_token_']);
-    $contact->fill($data)->save();
+    $form_data = $request->all();
+    $contact->saveContact($form_data);
     return view('thanks');
   }
 
   public function manage(Request $request)
   {
-    $items = Contact::paginate(10);
-    Paginator::useBootstrap();
-    return view('manage', ['items' => $items]);
-  }
+    $query = Contact::query();
 
-  public function search(Request $request)
-  {
+    $fullname = $request->input('fullname');
+    $gender = $request->input('gender');
+    $regist_start = $request->input('regist_start');
+    $regist_end = $request->input('regist_end');
+    $email = $request->input('email');
+
+    foreach ($request->only(['fullname', 'email']) as $key => $value) {
+      $query->where($key, 'LIKE', "%$value%")->get();
+    }
+
+    if ($request->has('gender') && $gender != '') {
+      $query->where('gender', $gender)->get();
+    }
+
+    // if ($request->has('regist_start') && $regist_start != '') {
+    //   $query->whereDay('created_at', '>=', $regist_start)->get();
+    // }
+
+    $items = $query->paginate(10);
+    Paginator::useBootstrap();
+
+    return view('manage', [
+      'items' => $items,
+      'fullname' => $fullname,
+      'gender' => $gender,
+      'regist_start' => $regist_start,
+      'regist_end' => $regist_end,
+      'email' => $email,
+    ]);
   }
 
   public function delete(Request $request)

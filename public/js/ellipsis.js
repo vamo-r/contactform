@@ -1,6 +1,6 @@
 const opinion = document.getElementsByClassName("opinion");
 const opinionArray = Array.from(opinion);
-for (i = 0; i < opinionArray.length; i++) {
+for (let i = 0; i < opinionArray.length; i++) {
   const array = opinion[i].innerText.split("");
   const char = array.length;
   if (char >= 25) {

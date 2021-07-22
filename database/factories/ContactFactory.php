@@ -22,13 +22,13 @@ class ContactFactory extends Factory
   public function definition()
   {
     return [
-      'fullname' => $this->faker->name,
+      'fullname' => $this->faker->name(),
       'gender' => $this->faker->numberBetween(1,3),
-      'email' => $this->faker->safeEmail,
+      'email' => $this->faker->safeEmail(),
       'postcode' => $this->faker->randomNumber(8),
-      'address' => $this->faker->state,
-      'building_name' => $this->faker->city,
-      'opinion' => $this->faker->sentence(),
+      'address' => $this->faker->address(),
+      'building_name' => $this->faker->company(),
+      'opinion' => $this->faker->realText(),
     ];
   }
 }

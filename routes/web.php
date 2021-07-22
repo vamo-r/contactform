@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
+  Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+  Route::post('register', [RegisterController::class, 'register']);
+});
+
 Route::get('/', [ContactsController::class, 'index'])->name('index');
 Route::post('/', [ContactsController::class, 'fix'])->name('index.fix');
+Route::get('/confirm', [ContactsController::class, 'confirm']);
 Route::post('/confirm', [ContactsController::class, 'confirm'])->name('index.confirm');
 Route::post('/thanks', [ContactsController::class, 'complete'])->name('index.thanks');
 
-Route::get('/manage', [ContactsController::class, 'manage'])->name('manage');
+Route::get('/manage', [ContactsController::class, 'manage'])->middleware('auth')->name('manage');
 Route::post('/manage/delete', [ContactsController::class, 'delete'])->name('manage.delete');
