@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 
@@ -44,17 +45,23 @@ class ContactsController extends Controller
     $regist_end = $request->input('regist_end');
     $email = $request->input('email');
 
+    // 名前・メールアドレス検索
     foreach ($request->only(['fullname', 'email']) as $key => $value) {
       $query->where($key, 'LIKE', "%$value%")->get();
     }
 
+    // 性別検索
     if ($request->has('gender') && $gender != '') {
       $query->where('gender', $gender)->get();
     }
 
-    // if ($request->has('regist_start') && $regist_start != '') {
-    //   $query->whereDay('created_at', '>=', $regist_start)->get();
-    // }
+    // 日付検索
+    if ($request->has('regist_start') && $regist_start != '') {
+      $query->where('created_at', '>=', Carbon::parse($request['regist_start'])->startOfDay());
+    }
+    if ($request->has('regist_end') && $regist_start != '') {
+      $query->where('created_at', '<=', Carbon::parse($request['regist_end'])->endOfDay());
+    }
 
     $items = $query->paginate(10);
     Paginator::useBootstrap();

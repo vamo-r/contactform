@@ -18,22 +18,22 @@
       <div class="search__gender">
         <label>性別</label>
         <input type="radio" name="gender" value=""
-        @if ($gender == null)
+        @if ($gender === null)
           checked
         @endif>
         全て
         <input type="radio" name="gender" value="1"
-        @if ($gender == 1)
+        @if ($gender === 1)
           checked
         @endif>
         男性
         <input type="radio" name="gender" value="2"
-        @if ($gender == 2)
+        @if ($gender === 2)
           checked
         @endif>
         女性
         <input type="radio" name="gender" value="3"
-        @if ($gender == 3)
+        @if ($gender === 3)
           checked
         @endif
         >その他

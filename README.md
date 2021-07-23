@@ -1,4 +1,4 @@
-## URL(role)
+## URL
 index : お問い合わせフォーム
 /confirm : 確認ページ
 /thanks : サンクスページ
@@ -7,3 +7,5 @@ index : お問い合わせフォーム
 /login : 認証ページ
 /logout : ログアウト
 /register : 管理者登録ページ
+
+/authority : 管理者権限変更ページ
