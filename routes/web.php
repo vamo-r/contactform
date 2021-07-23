@@ -30,7 +30,3 @@ Route::post('/thanks', [ContactsController::class, 'complete'])->name('index.tha
 
 Route::get('/manage', [ContactsController::class, 'manage'])->middleware('auth')->name('manage');
 Route::post('/manage/delete', [ContactsController::class, 'delete'])->name('manage.delete');
-
-// // 開発用
-// Route::get('/authority', [UserController::class, 'authority'])->name('authority');
-// Route::post('/authority', [UserController::class, 'change'])->name('authority.change');

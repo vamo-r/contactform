@@ -1,11 +1,9 @@
 ## URL
-index : お問い合わせフォーム
-/confirm : 確認ページ
-/thanks : サンクスページ
-
-/manage : お問い合わせ管理ページ(管理者のみ)
-/login : 認証ページ
-/logout : ログアウト
-/register : 管理者登録ページ
-
-/authority : 管理者権限変更ページ
+index : お問い合わせフォーム<br>
+/confirm : 確認ページ<br>
+/thanks : サンクスページ<br>
+<br>
+/manage : お問い合わせ管理ページ(管理者のみ)<br>
+/login : 認証ページ<br>
+/logout : ログアウト<br>
+/register : 管理者登録ページ<br>
